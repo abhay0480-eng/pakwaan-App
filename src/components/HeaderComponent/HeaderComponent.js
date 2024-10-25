@@ -1,4 +1,4 @@
-import logo from '../../public/logo.webp'
+import logo from '../../../public/logo.webp'
 
 const HeaderComponent = () => {
     return (

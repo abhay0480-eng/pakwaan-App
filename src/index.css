@@ -3,3 +3,6 @@
 @tailwind utilities;
 
 /* Custom CSS for hiding scrollbars */
+::-webkit-scrollbar {
+    width: 10px;
+  }
