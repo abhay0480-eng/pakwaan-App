@@ -2,7 +2,6 @@
   "name": "namastepakwaanapp",
   "version": "1.0.0",
   "description": "an dummy food ordering App by Namaste React",
-  "main": "App.js",
   "scripts": {
     "start" : "parcel index.html",
     "build" : "parcel build index.html",
