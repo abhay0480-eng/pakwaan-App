@@ -8,7 +8,6 @@ const RestrauntList = ({restrauntsData,searchTerm}) => {
 
     useEffect(()=>{
        const filterData =  restrauntsData.filter((item,index)=>item?.info?.name?.toLowerCase().includes(searchTerm?.toLowerCase()))
-        console.log("filtersss",filterData);
        setFilteredData(filterData)
     },[searchTerm,restrauntsData])
 

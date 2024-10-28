@@ -1,15 +1,22 @@
 import React from 'react'
 import { recommendaedImageUrl } from '../../utils/constants'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-const Accordian = ({setIsAccordianOpen,isAccordianOpen,menuData}) => {
+const Accordian = ({setIsAccordianOpen,isAccordianOpen,menuData,indexMenu}) => {
+    console.log("menuData",menuData);
+    
   return (
     <div className='my-10'>
-            <div onClick={()=>setIsAccordianOpen(pre=>!pre)} className='py-5 cursor-pointer flex justify-between items-center'>
-              <p className='font-bold text-lg '>Recommended (20)</p>
-              <p></p>
+            <div onClick={()=>setIsAccordianOpen(indexMenu)} className='py-5 cursor-pointer flex justify-between items-center shadow-lg px-4 rounded-md'>
+              <p className='font-bold text-lg '>{menuData[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[indexMenu]?.card?.card?.title} ({menuData[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[indexMenu]?.card?.card?.itemCards?.length})</p>
+              <div>
+                {isAccordianOpen===indexMenu?<KeyboardArrowDownIcon className='w-10 h-10' /> : <KeyboardArrowUpIcon className='w-10 h-10'/> }
+              </div>
+
             </div>
-            <div className={`${isAccordianOpen?"max-h-[2000px]":"max-h-0"} overflow-hidden ransition-all duration-1000`}>
-              {menuData[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards?.map((recommended,index)=>{
+            <div className={`${isAccordianOpen===indexMenu?"max-h-[3000px]":"max-h-0"} overflow-hidden ease-in-out transition-all duration-1000`}>
+              {menuData[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[indexMenu]?.card?.card?.itemCards?.map((recommended,index)=>{
                 return(
                   <div className='flex justify-between items-center gap-5 px-5 py-5 border-b-[1px] border-gray-200'>
                   <div className='w-[70%]'>

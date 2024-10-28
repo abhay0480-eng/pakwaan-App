@@ -10,8 +10,8 @@ import Offer from './Pages/Offer.js'
 import Cart from './Pages/Cart.js'
 import GlobalLayout from './components/Layout/GlobalLayout.jsx'
 import NotFound from './Pages/NotFound.jsx'
-import BannerDetailpage from './components/DetailPages/BannerDetailpage.jsx'
-import RestrauntsDetailPage from './components/DetailPages/RestrauntsDetailPage.jsx'
+import BannerDetailpage from './Pages/DetailPages/BannerDetailpage.jsx'
+import RestrauntsDetailPage from './Pages/DetailPages/RestrauntsDetailPage.jsx'
 
 const FoodApp = () => {
     return(

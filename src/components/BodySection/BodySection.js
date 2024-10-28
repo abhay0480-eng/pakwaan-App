@@ -27,8 +27,6 @@ const BodySection  = () => {
             const resReq = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.0747676&lng=72.535598&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
             
             const resRes = await resReq.json()
-            console.log("resRes",resRes);
-            console.log("resResslider",resRes?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
             setSliderData(resRes?.data?.cards[0].card?.card?.imageGridCards?.info?resRes?.data?.cards[0].card?.card?.imageGridCards?.info:[])
             setTopRestrauntsData(resRes?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants?resRes?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants:[])
             setRestrauntsData(resRes?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants?resRes?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants:[])
