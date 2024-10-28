@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "an dummy food ordering App by Namaste React",
   "scripts": {
-    "start" : "parcel index.html",
-    "build" : "parcel build index.html",
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "author": "abhay",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0"
   }
 }

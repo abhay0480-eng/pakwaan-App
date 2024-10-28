@@ -3,17 +3,42 @@ import ReactDOM from 'react-dom/client'
 import HeaderComponent from './components/HeaderComponent/HeaderComponent.js'
 import BodySection from './components/BodySection/BodySection.js'
 import './index.css'
-
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
+import Search from './Pages/Search.js'
+import Help from './Pages/Help.js'
+import Offer from './Pages/Offer.js'
+import Cart from './Pages/Cart.js'
+import GlobalLayout from './components/Layout/GlobalLayout.jsx'
+import NotFound from './Pages/NotFound.jsx'
+import BannerDetailpage from './components/DetailPages/BannerDetailpage.jsx'
+import RestrauntsDetailPage from './components/DetailPages/RestrauntsDetailPage.jsx'
 
 const FoodApp = () => {
     return(
         <div>
-            <HeaderComponent/>
             <BodySection/>
         </div>
     )
 }
 
+const router = createBrowserRouter(
+    createRoutesFromElements(
+        <Route path='/' element={<GlobalLayout/>} errorElement={<NotFound/>}>
+            <Route path='/' element={<FoodApp/>} />
+            <Route path='/search' element={<Search/>} />
+            <Route path='/help' element={<Help/>} />
+            <Route path='/offers' element={<Offer/>} />
+            <Route path='/cart' element={<Cart/>} />
+            <Route path='/banner/:id' element={<BannerDetailpage/>} />
+            <Route path='/restraunt-menu/:id' element={<RestrauntsDetailPage/>} />
+        </Route>
+    )
+)
+
 
 const rootEl = ReactDOM.createRoot(document.getElementById("root"))
-rootEl.render(<FoodApp/>)
+rootEl.render(
+    <React.StrictMode>
+        <RouterProvider router={router} />
+    </React.StrictMode>
+)
