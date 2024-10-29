@@ -7,6 +7,7 @@ import InfoSection from '../../components/DetailPageComponents/InfoSection'
 import ShimmerInfoSection from '../../components/DetailPageComponents/ShimmerInfoSection'
 import DealsForYouSection from '../../components/DetailPageComponents/DealsForYouSection'
 import ShimmerEffectBanner from '../../components/BodySection/Banner Component/ShimmerEffectBanner'
+import LunchDiningIcon from '@mui/icons-material/LunchDining';
 
 const RestrauntsDetailPage = () => {
 
@@ -48,7 +49,7 @@ const RestrauntsDetailPage = () => {
         
 
         <div className='my-10'>
-          <p className='text-center'>Menu</p>
+          <p className='text-center'><LunchDiningIcon/> Menu <LunchDiningIcon/> </p>
         </div>
 
         <div>

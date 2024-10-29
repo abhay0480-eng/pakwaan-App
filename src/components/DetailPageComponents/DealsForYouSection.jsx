@@ -8,7 +8,7 @@ const DealsForYouSection = ({menuData}) => {
     {menuData[3]?.card?.card?.gridElements?.infoWithStyle?.offers?.map((offer,index)=>{
 
       return(
-        <div className='flex justify-between items-center gap-3'>
+        <div className='flex justify-between items-center gap-3 border-[1px] border-gray-600 rounded-xl p-5'>
           <div>
             <img src={`${offerImageUrl}${offer?.info?.offerLogo}`} alt='' className='min-w-10 max-w-10' />
           </div>
