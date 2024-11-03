@@ -11,6 +11,9 @@ const RestrauntList = ({restrauntsData,searchTerm}) => {
        setFilteredData(filterData)
     },[searchTerm,restrauntsData])
 
+    console.log("RestrauntList called");
+    
+
 
   return (
  

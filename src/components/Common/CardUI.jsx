@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 import StarsIcon from '@mui/icons-material/Stars';
 
 const CardUI = ({resData,url}) => {
+
+   console.log("CardUI Called");
+   
     
 return (
 <section className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-5 max-w-screen-2xl mx-auto my-10'>
 {
     resData?.map((restData,index)=>{
         return(
-            <div>
+            <div key={restData?.info?.id}>
                 { <Link to={`/restraunt-menu/${restData?.info?.id }`} id={restData?.info?.id || index} className={`hover:scale-105 duration-200 cursor-pointer `}>
                 <div className='h-48'>
                     <img src={`${url}${restData?.info?.cloudinaryImageId || restData?.card?.card?.info?.cloudinaryImageId || "RX_THUMBNAIL/IMAGES/VENDOR/2024/5/10/213a964e-8671-4d10-aed6-4d5f0b4e2441_703971.JPG"} `} 

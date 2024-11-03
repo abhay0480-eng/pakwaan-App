@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import SliderUi from '../../Common/SliderUi'
 
 const BannerComponent = ({bannerdata}) => {
+  console.log("BannerComponent called");
   
   return (
   

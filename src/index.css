@@ -6,3 +6,15 @@
 ::-webkit-scrollbar {
     width: 10px;
   }
+
+
+  .swing {
+    animation: swing 2s ease-in-out infinite;
+    transform-origin: top center;
+  }
+  
+  @keyframes swing {
+    0% { transform: rotate(5deg); }
+    50% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+  }

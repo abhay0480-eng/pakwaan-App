@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { lazy, Suspense, useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import HeaderComponent from './components/HeaderComponent/HeaderComponent.js'
 import BodySection from './components/BodySection/BodySection.js'
@@ -12,11 +12,12 @@ import GlobalLayout from './components/Layout/GlobalLayout.jsx'
 import NotFound from './Pages/NotFound.jsx'
 import BannerDetailpage from './Pages/DetailPages/BannerDetailpage.jsx'
 import RestrauntsDetailPage from './Pages/DetailPages/RestrauntsDetailPage.jsx'
+const About = lazy(()=> import('./Pages/About.js'))
 
 const FoodApp = () => {
     return(
         <div>
-            <BodySection/>
+            <BodySection />
         </div>
     )
 }
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
             <Route path='/help' element={<Help/>} />
             <Route path='/offers' element={<Offer/>} />
             <Route path='/cart' element={<Cart/>} />
+            <Route path='/about' element={<Suspense fallback={<h1>Loading...</h1>}><About/></Suspense>} />
             <Route path='/banner/:id' element={<BannerDetailpage/>} />
             <Route path='/restraunt-menu/:id' element={<RestrauntsDetailPage/>} />
         </Route>
