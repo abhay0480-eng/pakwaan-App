@@ -7,6 +7,7 @@ export const LocationContext = createContext();
 const GlobalLayout = () => {
   
   const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
+  const [currentCoordinates, setCurrentCoordinates] = useState({ lat: 0, lng: 0 });
 
   useEffect(() => {
     const handleSuccess = (position) => {
@@ -14,7 +15,13 @@ const GlobalLayout = () => {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       });
+      setCurrentCoordinates({ 
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      })
     };
+
+   
 
     const handleError = (error) => {
       console.error("Geolocation error:", error);
@@ -33,7 +40,7 @@ if(coordinates?.lat === 0 || coordinates?.lng === 0){
 
   return (
     <div>
-       <LocationContext.Provider value={{ coordinates, setCoordinates }}>
+       <LocationContext.Provider value={{ coordinates, setCoordinates,currentCoordinates }}>
         <HeaderComponent/>
         <Outlet/>
        </LocationContext.Provider>

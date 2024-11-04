@@ -11,10 +11,11 @@ const HeaderComponent = () => {
   const locationName = useGetLocationData()
   const onlineStatus = useOnlineStatus();
   const [placeOptions, setPlaceOption] = useState([])
-  const { setCoordinates } = useContext(LocationContext);
+  const { setCoordinates,currentCoordinates,coordinates } = useContext(LocationContext);
   const isFirstRender = useRef(true);
   const dropdownRef = useRef(null);
   const debounceTimer = useRef(null);
+  const [isCurrentLocation,setIsCurrentLocation] = useState(false);
 
   const handleInputChange = (event) => {
     setPlace(event.target.value);
@@ -92,6 +93,7 @@ const HeaderComponent = () => {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       });
+      setIsCurrentLocation(false)
     };
 
     const handleError = (error) => {
@@ -100,6 +102,22 @@ const HeaderComponent = () => {
 
     navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
   }
+
+  function areObjectsEqual(obj1, obj2) {
+    // Check if both are objects and not null
+   console.log("obj1 obj2",obj1,obj2);
+
+   if(obj1?.lat===obj2?.lat && obj1?.lng===obj2?.lng){
+    setIsCurrentLocation(true)
+   }else{
+    setIsCurrentLocation(false)
+   }
+  }
+
+
+  useEffect(()=>{
+    areObjectsEqual(currentCoordinates,coordinates)
+  },[currentCoordinates,coordinates])
 
   return (
     <div className="p-5  rounded-xl ">
@@ -132,7 +150,7 @@ const HeaderComponent = () => {
               </div>
 
               <div>
-                 <button onClick={()=>handleCurrentLocation()}  className="px-4 py-2 bg-slate-600 text-white rounded-xl">Get Current Location</button> 
+                 <button onClick={()=>handleCurrentLocation()}   className={`px-4 ${isCurrentLocation?"hidden":"block"} py-2 bg-slate-600 text-white rounded-xl`}>Get Current Location</button> 
               </div>
             </div>
             

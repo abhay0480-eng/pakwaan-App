@@ -13,13 +13,13 @@ const Accordian = ({setIsAccordianOpen,isAccordianOpen,menuData,indexMenu}) => {
               <div>
                 {isAccordianOpen===indexMenu?<KeyboardArrowDownIcon className='w-10 h-10' /> : <KeyboardArrowUpIcon className='w-10 h-10'/> }
               </div>
-
             </div>
+
             <div className={`${isAccordianOpen===indexMenu?"max-h-[5000px]":"max-h-0"} overflow-hidden ease-in-out transition-all duration-1000`}>
               {menuData[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[indexMenu]?.card?.card?.itemCards?.map((recommended,index)=>{
                 return(
-                  <div className={`flex justify-between rounded-md items-center gap-5 px-5 py-5 border-b-[1px] relative bg-white  border-gray-200 drop-shadow-lg`}>
-                   {/* <div className={`w-full h-full absolute bg-opacity-10 rounded-lg  border-b-[1px]  border-gray-200 z-30 left-0 top-0 bg-black flex flex-col justify-center items-center ${recommended?.card?.info?.price/100?"hidden":"block"}`}></div> */}
+                  <div className={`flex justify-between rounded-md items-center gap-5 px-5 py-5 border-b-[1px] relative bg-white  border-gray-200 drop-shadow-lg `}>
+                   <div className={`w-full h-full absolute bg-opacity-10 rounded-lg  border-b-[1px]  border-gray-200 z-30 left-0 top-0 bg-black flex flex-col justify-center items-center text-3xl text-black font-bold   ${recommended?.card?.info?.price/100?"hidden":"block"}`}>Not Available</div>
                     <div className={`w-[70%] ${recommended?.card?.info?.price/100?"":"blur-sm"}`} >
                       <p className='font-bold text-lg'>{recommended?.card?.info?.name}</p>
                       <p className='font-bold text-base'>₹ {recommended?.card?.info?.price/100?recommended?.card?.info?.price/100 : "Not Available"}</p>
@@ -32,7 +32,7 @@ const Accordian = ({setIsAccordianOpen,isAccordianOpen,menuData,indexMenu}) => {
                       </div>
                       <div className='absolute bottom-1 z-10  left-1/2 transform -translate-x-1/2'>
                     
-                      <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-7 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 shadow-lg">Add </button>
+                      <button type="button" className={`focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-7 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 shadow-lg ${recommended?.card?.info?.price/100?"":"hidden"}`}> Add</button>
                       </div>
                     </div>
                   </div>
