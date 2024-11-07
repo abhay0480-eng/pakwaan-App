@@ -3,8 +3,20 @@ import { recommendaedImageUrl } from '../../utils/constants'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import StarsIcon from '@mui/icons-material/Stars';
+import { useDispatch } from 'react-redux';
+import storeSlice, { addItems } from '../../store/storeSlice';
+import toast from 'react-hot-toast';
 
 const Accordian = ({setIsAccordianOpen,isAccordianOpen,menuData,indexMenu}) => {
+
+  console.log("menuData",menuData);
+  
+
+  const dispatch = useDispatch()
+
+  const handleItemtoCart = (index) => {
+      dispatch(addItems(menuData[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[indexMenu]?.card?.card?.itemCards[index]))
+  }
     
   return (
     <div className='my-10'>
@@ -19,20 +31,32 @@ const Accordian = ({setIsAccordianOpen,isAccordianOpen,menuData,indexMenu}) => {
               {menuData[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[indexMenu]?.card?.card?.itemCards?.map((recommended,index)=>{
                 return(
                   <div className={`flex justify-between rounded-md items-center gap-5 px-5 py-5 border-b-[1px] relative bg-white  border-gray-200 drop-shadow-lg `}>
-                   <div className={`w-full h-full absolute bg-opacity-10 rounded-lg  border-b-[1px]  border-gray-200 z-30 left-0 top-0 bg-black flex flex-col justify-center items-center text-3xl text-black font-bold   ${recommended?.card?.info?.price/100?"hidden":"block"}`}>Not Available</div>
-                    <div className={`w-[70%] ${recommended?.card?.info?.price/100?"":"blur-sm"}`} >
+                   <div className={`w-full h-full absolute bg-opacity-10 rounded-lg  border-b-[1px]  border-gray-200 z-30 left-0 top-0 bg-black flex flex-col justify-center items-center text-3xl text-black font-bold   ${(recommended?.card?.info?.price/100 || recommended?.card?.info?.defaultPrice/100)?"hidden":"block"}`}>Not Available</div>
+                    <div className={`w-[70%] ${(recommended?.card?.info?.price/100 || recommended?.card?.info?.defaultPrice/100)?"":"blur-sm"}`} >
                       <p className='font-bold text-lg'>{recommended?.card?.info?.name}</p>
-                      <p className='font-bold text-base'>₹ {recommended?.card?.info?.price/100?recommended?.card?.info?.price/100 : "Not Available"}</p>
+                      <p className='font-bold text-base'>₹ {(recommended?.card?.info?.price/100 || recommended?.card?.info?.defaultPrice/100)?recommended?.card?.info?.price/100 || recommended?.card?.info?.defaultPrice/100 : "Not Available"}</p>
                       {recommended?.card?.info?.ratings?.aggregatedRating?.rating &&<p className='my-2'> <StarsIcon className='text-green-800'/>  {recommended?.card?.info?.ratings?.aggregatedRating?.rating} ({recommended?.card?.info?.ratings?.aggregatedRating?.ratingCountV2})</p>}
                       <p className='my-2 text-sm font-medium'>{recommended?.card?.info?.description}</p>
                     </div>
                     <div className='relative'>
-                      <div className={` ${recommended?.card?.info?.price/100?"":"blur-sm"}`}>
+                      <div className={` ${(recommended?.card?.info?.price/100 || recommended?.card?.info?.defaultPrice/100)?"":"blur-sm"}`}>
                       <img src={`${recommendaedImageUrl}${recommended?.card?.info?.imageId}`} alt='' className='min-w-36 max-w-36 min-h-36 h-36 rounded-xl object-cover' />
                       </div>
                       <div className='absolute bottom-1 z-10  left-1/2 transform -translate-x-1/2'>
                     
-                      <button type="button" className={`focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-7 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 shadow-lg ${recommended?.card?.info?.price/100?"":"hidden"}`}> Add</button>
+                      <button onClick={()=>{handleItemtoCart(index);  toast((t) => (
+                        <div className=''>
+                           <div className="flex items-center gap-2">
+                           <img src={`${recommendaedImageUrl}${recommended?.card?.info?.imageId}`} alt='' className='min-w-14 max-w-14 min-h-14 h-14 rounded-xl object-cover' />
+                            <div className="text-sm ">
+                             <span className='font-semibold'>{recommended?.card?.info?.name}</span>  added to your cart! 🍕 🍔 ☕️ Get ready for a tasty time!
+                            </div>
+                          </div>
+                          {/* <button onClick={() => toast.dismiss(t.id)}>
+                            Dismiss
+                          </button> */}
+                        </div>
+                      ))}}  type="button" className={`focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-7 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 shadow-lg ${(recommended?.card?.info?.price/100 || recommended?.card?.info?.defaultPrice/100)?"":"hidden"}`}> Add</button>
                       </div>
                     </div>
                   </div>

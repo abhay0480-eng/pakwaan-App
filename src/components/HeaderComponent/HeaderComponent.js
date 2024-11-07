@@ -5,6 +5,8 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { LocationContext } from "../Layout/GlobalLayout";
 import useGetLocationData from "../../utils/useGetLocationData";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const HeaderComponent = () => {
   const [place, setPlace] = useState("");
@@ -16,7 +18,9 @@ const HeaderComponent = () => {
   const dropdownRef = useRef(null);
   const debounceTimer = useRef(null);
   const [isCurrentLocation,setIsCurrentLocation] = useState(false);
-
+  const storeItemsLocal = useSelector((state) => state.store.storeItems);
+  
+  // const [storeItemsLocal, setStoreItemsLocal] = useState(JSON.parse(localStorage.getItem("cartItems") || storeItems));
   const handleInputChange = (event) => {
     setPlace(event.target.value);
   };
@@ -120,7 +124,7 @@ const HeaderComponent = () => {
   },[currentCoordinates,coordinates])
 
   return (
-    <div className="p-5  rounded-xl ">
+    <div className="p-5  rounded-xl fixed top-0 w-full bg-white z-30 shadow-lg">
       <div className=" max-w-screen-2xl mx-auto flex justify-between">
         <div className="flex justify-start items-center gap-5">
             <Link to="/" className="w-40 h-20 ">
@@ -179,7 +183,7 @@ const HeaderComponent = () => {
           <Link to="offers">Offers</Link>
           <Link to="about">About</Link>
           <button>Sign in</button>
-          <Link to="cart">Cart</Link>
+          <Link to="cart" className="cursor-pointer relative "><ShoppingCartIcon/> <span className="absolute text-xs z-40 top-[-5px] left-5 px-[5px] py-[1px] rounded-full bg-green-500  text-white">{storeItemsLocal?.length}</span> </Link>
         </div>
       </div>
     </div>
