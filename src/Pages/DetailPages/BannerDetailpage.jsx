@@ -14,7 +14,7 @@ const BannerDetailpage = () => {
 
     console.log("BannerDetailpage called", coordinates);
     
-
+    const url = `https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=${coordinates?.lat}&lng=${coordinates?.lng}&collection=${id}&tags=layout_breakfastcampaign&sortBy=&filters=&type=rcv2&offset=0&page_type=null`
 
     useEffect(()=>{
         getbannerDetail()
@@ -24,7 +24,8 @@ const BannerDetailpage = () => {
 
         try {
             setLoading(true)
-            const reqBannerDetailData = await fetch(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=${coordinates?.lat}&lng=${coordinates?.lng}&collection=${id}&tags=layout_breakfastcampaign&sortBy=&filters=&type=rcv2&offset=0&page_type=null`) 
+            // const reqBannerDetailData = await fetch(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=${coordinates?.lat}&lng=${coordinates?.lng}&collection=${id}&tags=layout_breakfastcampaign&sortBy=&filters=&type=rcv2&offset=0&page_type=null`) 
+            const reqBannerDetailData = await fetch(url) 
             const resBannerDetailData = await reqBannerDetailData.json()
             setBannerCardData(resBannerDetailData?.data?.cards?resBannerDetailData?.data?.cards:[])
         } catch (error) {

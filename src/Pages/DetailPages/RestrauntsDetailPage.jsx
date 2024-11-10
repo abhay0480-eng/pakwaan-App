@@ -19,7 +19,7 @@ const RestrauntsDetailPage = () => {
     const getRestrauntMenu = async() => {
       try {
         setLoading(true)
-        const reqRestrauntMenu = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=23.0747676&lng=72.535598&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`)
+        const reqRestrauntMenu = await fetch(`https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=23.0747676&lng=72.535598&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`)
         const resRestrauntMenu = await reqRestrauntMenu.json()
         setMenuData(resRestrauntMenu?.data?.cards)
       } catch (error) {
