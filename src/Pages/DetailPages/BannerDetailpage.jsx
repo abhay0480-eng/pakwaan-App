@@ -14,7 +14,8 @@ const BannerDetailpage = () => {
 
     console.log("BannerDetailpage called", coordinates);
     
-    const url = `https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=${coordinates?.lat}&lng=${coordinates?.lng}&collection=${id}&tags=layout_breakfastcampaign&sortBy=&filters=&type=rcv2&offset=0&page_type=null`
+    // const url1 = `https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=${coordinates?.lat}&lng=${coordinates?.lng}&collection=${id}&tags=layout_breakfastcampaign&sortBy=&filters=&type=rcv2&offset=0&page_type=null`, 
+    const url = `https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=${coordinates?.lat}&lng=${coordinates?.lng}&collection=${id}&tags=layout_breakfastcampaign&sortBy=&filters=&type=rcv2&offset=0&page_type=null`
 
     useEffect(()=>{
         getbannerDetail()
